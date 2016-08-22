@@ -12,6 +12,7 @@ public class InfomonitorJSONResponse implements Serializable {
     private String type;
     private List<String> waypointIds;
     private String onlyLane;
+    private boolean showCarrierLogo;
     private int maxPages;
     private boolean hasImage;
 
@@ -47,9 +48,13 @@ public class InfomonitorJSONResponse implements Serializable {
         return maxPages;
     }
 
+    public boolean getShowCarrierLogo() { return showCarrierLogo; }
+
     public void setMaxPages(int maxPages) {
         this.maxPages = maxPages;
     }
+
+    public void setShowCarrierLogo(boolean showCarrierLogo) { this.showCarrierLogo = showCarrierLogo; }
 
     public void setHasImage(boolean hasImage) {
         this.hasImage = hasImage;
