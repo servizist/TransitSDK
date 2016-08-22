@@ -1,0 +1,6 @@
+src/main/resources/application.properties
+www/*
+target/*
+*.iml
+.idea/
+

@@ -1,22 +1,23 @@
-package it.sad.sii.transit.utils;
+package it.sad.sii.transit.sdk.utils;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
-import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
+import org.joda.time.LocalTime;
 
 import java.io.IOException;
 
 /**
- * Created by mutschlechner on 3/27/15.
+ * Created by ldematte on 10/29/15.
  */
-public class DateTimeDeserializer extends JsonDeserializer<DateTime> {
+public class DateDeserializer extends JsonDeserializer<LocalDate> {
 
     @Override
-    public DateTime deserialize(JsonParser jsonParser, DeserializationContext deserializationContext)
+    public LocalDate deserialize(JsonParser jsonParser, DeserializationContext deserializationContext)
             throws IOException, JsonProcessingException {
         String date = jsonParser.getText();
-        return DateUtils.parseDateTime(date);
+        return DateUtils.parseDateNice(date);
     }
 }

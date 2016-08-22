@@ -1,33 +1,27 @@
-package it.sad.sii.transit.model;
+package it.sad.sii.transit.sdk.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import it.sad.sii.transit.utils.DateTimeDeserializer;
-import it.sad.sii.transit.utils.DateTimeSerializer;
+import it.sad.sii.transit.sdk.utils.DateTimeDeserializer;
+import it.sad.sii.transit.sdk.utils.DateTimeSerializer;
 import org.joda.time.DateTime;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 
 /**
- * Created by ldematte on 10/9/14.
+ * Created by ldematte on 10/29/15.
  */
+
 @XmlRootElement
-public class Run {
-    public int id;
+public class WaypointTimeDetails implements Serializable {
+    public String waypointId;
 
     @JsonSerialize(using = DateTimeSerializer.class)
     @JsonDeserialize(using = DateTimeDeserializer.class)
-    public DateTime startTime;
+    public DateTime arrivalTime;
 
     @JsonSerialize(using = DateTimeSerializer.class)
     @JsonDeserialize(using = DateTimeDeserializer.class)
-    public DateTime endTime;
-
-    public Run() { }
-
-    public Run(int id, DateTime startTime, DateTime endTime) {
-        this.id = id;
-        this.startTime = startTime;
-        this.endTime = endTime;
-    }
+    public DateTime departureTime;
 }

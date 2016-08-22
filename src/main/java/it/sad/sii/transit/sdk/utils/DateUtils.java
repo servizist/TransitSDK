@@ -1,14 +1,10 @@
-package it.sad.sii.transit.utils;
+package it.sad.sii.transit.sdk.utils;
 
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;
-import org.joda.time.MutableDateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 /**
  * Utilities for reading and writing DateTime objects.
@@ -16,6 +12,7 @@ import java.text.SimpleDateFormat;
 public class DateUtils {
     private static final DateTimeFormatter DATETIME_FORMATTER = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormat.forPattern("yyyyMMdd");
+    private static final DateTimeFormatter DATE_NICE_FORMATTER = DateTimeFormat.forPattern("yyyy-MM-dd");
     private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormat.forPattern("HH:mm:ss");
 
     /**
@@ -44,8 +41,8 @@ public class DateUtils {
      * @param date String containing a date in the form "yyyyMMdd"
      * @return a DateTime object
      */
-    public static DateTime parseDate(String date) {
-        return DATE_FORMATTER.parseDateTime(date);
+    public static LocalDate parseDate(String date) {
+        return DATE_FORMATTER.parseLocalDate(date);
     }
 
     /**
@@ -69,13 +66,43 @@ public class DateUtils {
     }
 
     /**
+     * Parses the given String in the form "yyyy-MM-dd" to a DateTime object.
+     *
+     * @param date String containing a date in the form "yyyy-MM-dd"
+     * @return a DateTime object
+     */
+    public static LocalDate parseDateNice(String date) {
+        return DATE_NICE_FORMATTER.parseLocalDate(date);
+    }
+
+    /**
+     * Prints the given DateTime object to a String in the form "yyyy-MM-dd".
+     *
+     * @param date a DateTime object
+     * @return String containing a date in the form "yyyy-MM-dd"
+     */
+    public static String printDateNice(DateTime date) {
+        return DATE_NICE_FORMATTER.print(date);
+    }
+
+    /**
+     * Prints the given DateTime object to a String in the form "yyyy-MM-dd".
+     *
+     * @param date a DateTime object
+     * @return String containing a date in the form "yyyy-MM-dd"
+     */
+    public static String printDateNice(LocalDate date) {
+        return DATE_NICE_FORMATTER.print(date);
+    }
+
+    /**
      * Parses the given String in the form "HH:mm:ss" to a DateTime object.
      *
      * @param date String containing a date in the form "HH:mm:ss"
      * @return a DateTime object
      */
-    public static DateTime parseTime(String date) {
-        return TIME_FORMATTER.parseDateTime(date);
+    public static LocalTime parseTime(String date) {
+        return TIME_FORMATTER.parseLocalTime(date);
     }
 
     /**
