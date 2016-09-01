@@ -42,6 +42,7 @@ public class TimeTable implements Serializable, Comparable<TimeTable> {
                 case "A":
                 case "OUTWARDS":
                 case "As":
+                case "H":
                     return OUTWARDS;
 
                 case "R":
