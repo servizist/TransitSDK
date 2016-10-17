@@ -64,6 +64,7 @@ public class TimeTable implements Serializable, Comparable<TimeTable> {
     protected Integer validFrom;
     protected Integer validTo;
     protected List<? extends TimeTableData> entries;
+    protected List<? extends TimeTableData> entriesForTrain;
     protected List<? extends TimeTableCalendar> periods;
 
     public TimeTable() {
