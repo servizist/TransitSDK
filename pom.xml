@@ -6,7 +6,7 @@
 
     <groupId>it.sad.sii</groupId>
     <artifactId>TransitSDK</artifactId>
-    <version>1.2.1</version>
+    <version>1.3.0</version>
     <packaging>jar</packaging>
 
     <name>TransitSDK</name>
@@ -14,9 +14,6 @@
     <properties>
         <project.codeVersion>1</project.codeVersion>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <username></username>
-        <password></password>
-        <baseUri></baseUri>
     </properties>
 
     <build>
@@ -28,18 +25,6 @@
                     <source>1.8</source>
                     <target>1.8</target>
                     <compilerArgument>-Xlint:deprecation</compilerArgument>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.17</version>
-                <configuration>
-                    <systemPropertyVariables>
-                        <username>${username}</username>
-                        <password>${password}</password>
-                        <baseUri>${baseUri}</baseUri>
-                    </systemPropertyVariables>
                 </configuration>
             </plugin>
         </plugins>
@@ -54,28 +39,16 @@
     </repositories>
 
     <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
-            <optional>true</optional>
-        </dependency>
+        <!-- Date and time handling (we do not trust standard Java libraries here) -->
         <dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
             <version>2.9.4</version>
         </dependency>
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.7</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>2.8.3</version>
-        </dependency>
+
+        <!-- JSON annotations. Useful if you are using a auto-bind JSON library like Jackson.
+             We use Jersey in the server, so this is useful. If you use a POJO library like
+             GSON, just ignore them. -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
@@ -85,16 +58,6 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>2.8.3</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>4.3.6</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>2.4</version>
         </dependency>
     </dependencies>
 </project>
