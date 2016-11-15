@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 public class LineDetails implements Serializable {
-    public List<Point> forwardWaypoints;
-    public List<Point> backwardWaypoints;
+    public List<Waypoint> forwardWaypoints;
+    public List<Waypoint> backwardWaypoints;
 
     public String descriptionDe;
     public String descriptionIt;
@@ -28,7 +28,7 @@ public class LineDetails implements Serializable {
     public Number carrierId;
     public Number lineId;
 
-    public Map<String, Zone> zones = new HashMap<>();
+    public Map<String, BilingualString> zones = new HashMap<>();
 
     public String commercialCode;
 }

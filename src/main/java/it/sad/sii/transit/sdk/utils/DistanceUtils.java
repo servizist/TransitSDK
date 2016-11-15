@@ -1,10 +1,9 @@
 package it.sad.sii.transit.sdk.utils;
 
+import it.sad.sii.transit.sdk.model.*;
 import it.sad.sii.transit.sdk.model.Location;
-import it.sad.sii.transit.sdk.model.Pair;
-import it.sad.sii.transit.sdk.model.LineEdge;
-import it.sad.sii.transit.sdk.model.Point;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,14 +13,14 @@ import java.util.Map;
  */
 public class DistanceUtils {
 
-    public static double percentageAlongLine(Point P, Point A, Point B) {
-        Pair<Point, Point> lowerLine = planeFromSegment(A, B);
+    public static double percentageAlongLine(Location P, Location A, Location B) {
+        Pair<Location, Location> lowerLine = planeFromSegment(A, B);
 
         PointPosition positionForLower = beforeOrAfter(P, lowerLine.first, lowerLine.second);
         if (positionForLower == PointPosition.Before)
             return 0.0;
 
-        Pair<Point, Point> upperLine = planeFromSegment(B, A);
+        Pair<Location, Location> upperLine = planeFromSegment(B, A);
         PointPosition positionForUpper = beforeOrAfter(P, upperLine.second, upperLine.first);
         if (positionForUpper == PointPosition.After)
             return 1.0;
@@ -63,7 +62,7 @@ public class DistanceUtils {
     //           X Before
     //
     // It computes the dot product to see if it "left-handed" or "right-handed".
-    public static PointPosition beforeOrAfter(Point p, Point A, Point B) {
+    public static PointPosition beforeOrAfter(Location p, Location A, Location B) {
         double dotProduct = (B.x() - A.x()) * (p.y() - A.y()) - (B.y() - A.y()) * (p.x() - A.x());
 
         if (Math.abs(dotProduct) < 1E-6)
@@ -78,18 +77,18 @@ public class DistanceUtils {
 
     // Given a vector, it computes the two perpendicular line (as two points) passing on the starting point
     // Segment is (AB)
-    public static Pair<Point, Point> planeFromSegment(Point A, Point B) {
+    public static<L extends Location> Pair<Location, Location> planeFromSegment(L A, L B) {
         // treat AB as a vector.
         // Subtract A components ("translate" to origin)
         double x = B.x() - A.x();
         double y = B.y() - A.y();
 
         // If you have a vector v with coordinates (x, y), then a vector perpendicular to v is (y, -x) or (-y, x).
-        Point d = new Point();
+        Location d = new Location();
         d.x(y + A.x());
         d.y(-x + A.y());
 
-        Point c = new Point();
+        Location c = new Location();
         c.x(-y + A.x());
         c.y(x + A.y());
 
@@ -109,12 +108,12 @@ public class DistanceUtils {
     // else if P is on perpendicular line crossing A -> OnStart
     // else if P is on perpendicular line crossing B -> OnEnd
     // else -> Between
-    public static PositionOnLine isBetween(Point P, Point A, Point B) {
+    public static PositionOnLine isBetween(Location P, Location A, Location B) {
         // location w.r.t. start point A
-        Pair<Point, Point> lowerLine = planeFromSegment(A, B);
+        Pair<Location, Location> lowerLine = planeFromSegment(A, B);
         PointPosition positionForLower = beforeOrAfter(P, lowerLine.first, lowerLine.second);
         // location w.r.t. end point B
-        Pair<Point, Point> upperLine = planeFromSegment(B, A);
+        Pair<Location, Location> upperLine = planeFromSegment(B, A);
         PointPosition positionForUpper = beforeOrAfter(P, upperLine.second, upperLine.first);
         // distance to line AB
         float distance = (float)DistanceUtils.distance(P, A, B);
@@ -140,33 +139,34 @@ public class DistanceUtils {
         return v * v;
     }
 
-    public static double distance(Point P, Point A, Point B) {
+    public static double distance(Location P, Location A, Location B) {
         double normalLength =
-                Math.sqrt(Sq(B.longitude.doubleValue() - A.longitude.doubleValue()) +
-                          Sq(B.latitude.doubleValue() - A.latitude.doubleValue()));
-        return Math.abs((P.longitude.doubleValue() - A.longitude.doubleValue()) *
-                        (B.latitude.doubleValue() - A.latitude.doubleValue()) -
-                        (P.latitude.doubleValue() - A.latitude.doubleValue()) *
-                        (B.longitude.doubleValue() - A.longitude.doubleValue())) / normalLength;
+                Math.sqrt(Sq(B.x() - A.x()) +
+                          Sq(B.y() - A.y()));
+        return Math.abs((P.x() - A.x()) *
+                        (B.y() - A.y()) -
+                        (P.y() - A.y()) *
+                        (B.x() - A.x())) / normalLength;
     }
 
-    public static double pointToLineDistance(Point lineStart, Point lineEnds, Location P) {
-        double normalLength = Math.sqrt(Sq(lineEnds.longitude.doubleValue() - lineStart.longitude.doubleValue()) +
-                                        Sq(lineEnds.latitude.doubleValue() - lineStart.latitude.doubleValue()));
-        return Math.abs((P.getLongitude() - lineStart.longitude.doubleValue()) *
-                        (lineEnds.latitude.doubleValue() - lineStart.latitude.doubleValue()) -
-                        (P.getLatitude() - lineStart.latitude.doubleValue()) *
-                        (lineEnds.longitude.doubleValue() - lineStart.longitude.doubleValue())) /
+    public static double pointToLineDistance(Location lineStart, Location lineEnds, Location P) {
+        double normalLength = Math.sqrt(Sq(lineEnds.x() - lineStart.x()) +
+                                        Sq(lineEnds.y() - lineStart.y()));
+        return Math.abs((P.x() - lineStart.x()) *
+                        (lineEnds.y() - lineStart.y()) -
+                        (P.y() - lineStart.y()) *
+                        (lineEnds.x() - lineStart.x())) /
                normalLength;
     }
 
-    public static int closestEdge(int currentEdgeIndex, Point p, List<LineEdge> edges,
-                                  Map<Integer, Point> waypointMap) {
+    public static<L1 extends Location, L2 extends Location> int closestEdge(int currentEdgeIndex,
+                                                                            L1 p, List<LineEdge> edges,
+                                                                            Map<Integer, L2> waypointMap) {
         if (currentEdgeIndex >= edges.size()) {
             return -1;
         }
-        Point pointA;
-        Point pointB;
+        Location pointA;
+        Location pointB;
         DistanceUtils.PositionOnLine positionOnLine;
         // return -1 if current position lies not within any edge
         int closestEdgeIndex = -1;
@@ -202,7 +202,8 @@ public class DistanceUtils {
         return closestEdgeIndex;
     }
 
-    private static EdgeAndPosition nextEdge(int i, List<LineEdge> currentVertices, HashMap<Integer, Point> waypoints) {
+    private static<L extends Location> EdgeAndPosition nextEdge(int i, List<LineEdge> currentVertices,
+                                                                HashMap<Integer, L> waypoints) {
         int currentStart = -1;
         int currentEnd = -1;
         long currentTime = 0;
@@ -240,15 +241,15 @@ public class DistanceUtils {
     // a list of line edges
     // Find out the edges present in both, and trim them.
     // Adjust edges and times accordingly (A-B-C -> no B -> A-C)
-    public static void trimEdgesToWaypoints(List<Point> currentPoints, List<LineEdge> currentEdges,
-                                            List<Point> trimmedPoints,
-                                            List<LineEdge> trimmedEdges) {
+    public static Map<Integer, Waypoint> trimEdgesToWaypoints(List<Waypoint> currentPoints, List<LineEdge> currentEdges,
+                                                              List<Waypoint> trimmedPoints,
+                                                              List<LineEdge> trimmedEdges) {
 
         if (currentEdges.size() == 0) {
-            return;
+            return Collections.emptyMap();
         }
         // Add the first point
-        for (Point point : currentPoints) {
+        for (Waypoint point : currentPoints) {
             if (Integer.parseInt(point.id) == currentEdges.get(0).getIdA()) {
                 trimmedPoints.add(point);
                 break;
@@ -257,16 +258,16 @@ public class DistanceUtils {
 
         // Add all the other ones
         for (LineEdge lineEdge : currentEdges) {
-            for (Point point : currentPoints) {
+            for (Waypoint point : currentPoints) {
                 if (Integer.parseInt(point.id) == lineEdge.getIdB()) {
                     trimmedPoints.add(point);
                     break;
                 }
             }
         }
-        HashMap<Integer, Point> waypointMap = new HashMap<Integer, Point>();
+        HashMap<Integer, Waypoint> waypointMap = new HashMap<>();
         // Build the waypoint map with the available ones (we need it now)
-        for (Point point : trimmedPoints) {
+        for (Waypoint point : trimmedPoints) {
             waypointMap.put(Integer.parseInt(point.id), point);
         }
 
@@ -278,5 +279,7 @@ public class DistanceUtils {
             if (nextEdge.getEdge() != null)
                 trimmedEdges.add(nextEdge.getEdge());
         }
+
+        return waypointMap;
     }
 }

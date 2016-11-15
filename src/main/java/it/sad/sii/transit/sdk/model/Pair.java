@@ -10,7 +10,7 @@ public class Pair<T, U> implements Comparable<Pair<T, U>> {
     public final T first;
     public final U second;
 
-    private Pair(T first, U second) {
+    public Pair(T first, U second) {
         this.first = first;
         this.second = second;
     }

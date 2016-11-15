@@ -1,19 +1,18 @@
 package it.sad.sii.transit.sdk.model;
 
+import it.sad.sii.transit.sdk.utils.INotificationProcessor;
+
 import javax.xml.bind.annotation.XmlRootElement;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
 @XmlRootElement
-public class JourneyStartedNotification implements Serializable {
+public class JourneyStartedNotification extends JourneyNotification implements Serializable {
 
     public List<WaypointTime> waypoints;
-    public String transportId;
-    public String lineId;
-    public String runId;
     public TimeTable.Direction direction;
     public boolean isPlanned;
-    public long txTime;
 
     public JourneyStartedNotification() {
     }
@@ -42,5 +41,10 @@ public class JourneyStartedNotification implements Serializable {
              ", txTime=" + txTime +
              "}";
         return s;
+    }
+
+    @Override
+    public void visit(INotificationProcessor processor) throws IOException {
+        processor.process(this);
     }
 }

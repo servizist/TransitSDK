@@ -1,15 +1,12 @@
 package it.sad.sii.transit.sdk.model;
 
+import it.sad.sii.transit.sdk.utils.INotificationProcessor;
+
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
 @XmlRootElement
-public class JourneyEndedNotification implements Serializable {
-
-    public String transportId;
-    public String lineId;
-    public String runId;
-    public long txTime;
+public class JourneyEndedNotification extends JourneyNotification implements Serializable {
 
     public JourneyEndedNotification() {
     }
@@ -28,5 +25,10 @@ public class JourneyEndedNotification implements Serializable {
                ", runId=" + runId +
                ", txTime=" + txTime +
                "}";
+    }
+
+    @Override
+    public void visit(INotificationProcessor processor) {
+        processor.process(this);
     }
 }

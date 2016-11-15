@@ -1,22 +1,20 @@
 package it.sad.sii.transit.sdk.model;
 
+import it.sad.sii.transit.sdk.utils.INotificationProcessor;
+
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
 @XmlRootElement
-public class JourneyPassageNotification implements Serializable {
+public class JourneyPassageNotification extends JourneyNotification implements Serializable {
 
     public String waypointId;
-    public String transportId;
-    public String lineId;
-    public String runId;
     public String expectedRelativeTime;
     public String measuredRelativeTime;
-    public long txTime;
 
     public JourneyPassageNotification() { }
 
-    // TODO! Add direction so that we can load information (via, destinatio, ...) on info panels correctly
+    // TODO! Add direction so that we can load information (via, destination, ...) on info panels correctly
     public JourneyPassageNotification(String waypointId, String transportId, String lineId, String runId,
                                       String expectedRelativeTime, String measuredRelativeTime, long txTime) {
         this.waypointId = waypointId;
@@ -38,5 +36,10 @@ public class JourneyPassageNotification implements Serializable {
                ", measuredRelativeTime=" + measuredRelativeTime +
                ", txTime = " + txTime +
                "}";
+    }
+
+    @Override
+    public void visit(INotificationProcessor processor) {
+        processor.process(this);
     }
 }
