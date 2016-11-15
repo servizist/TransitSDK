@@ -143,7 +143,11 @@ public class DateUtils {
      * @return DateTime containing the time that corresponds to secondsSinceMidnight of the given date
      */
     public static DateTime secondsSinceMidnightToDate(int secondsSinceMidnight, LocalDate date) {
-        return date.toDateTimeAtStartOfDay().plusSeconds(secondsSinceMidnight);
+        int hoursSinceMidnight = secondsSinceMidnight / 3600;
+        int minutesSinceMidnight = (secondsSinceMidnight - (hoursSinceMidnight * 3600)) / 60;
+        int remainingSeconds = (secondsSinceMidnight - (hoursSinceMidnight * 3600)) - (minutesSinceMidnight * 60);
+        return new DateTime(date.getYear(), date.getMonthOfYear(), date.getDayOfMonth(), hoursSinceMidnight,
+                            minutesSinceMidnight, remainingSeconds);
     }
 
     /**
