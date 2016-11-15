@@ -11,6 +11,8 @@ public class BilingualString implements Serializable {
 
     public BilingualString() {
         super();
+        this.stringDE = "";
+        this.stringIT = "";
     }
 
     public BilingualString(String stringIT, String stringDE) {
