@@ -1,6 +1,7 @@
 package it.sad.sii.transit.sdk.model;
 
 import it.sad.sii.transit.sdk.utils.INotificationProcessor;
+import org.joda.time.DateTime;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
@@ -11,6 +12,8 @@ public class JourneyPassageNotification extends JourneyNotification implements S
     public String waypointId;
     public String expectedRelativeTime;
     public String measuredRelativeTime;
+
+    public DateTime exitTime;
 
     public JourneyPassageNotification() { }
 
@@ -23,6 +26,16 @@ public class JourneyPassageNotification extends JourneyNotification implements S
         this.runId = runId;
         this.expectedRelativeTime = expectedRelativeTime;
         this.measuredRelativeTime = measuredRelativeTime;
+        this.txTime = txTime;
+    }
+
+    public JourneyPassageNotification(String waypointId, String transportId, String lineId, String runId,
+                                      DateTime exitTime, long txTime) {
+        this.waypointId = waypointId;
+        this.transportId = transportId;
+        this.lineId = lineId;
+        this.runId = runId;
+        this.exitTime = exitTime;
         this.txTime = txTime;
     }
 

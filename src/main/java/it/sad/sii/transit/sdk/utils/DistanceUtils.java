@@ -149,16 +149,6 @@ public class DistanceUtils {
                         (B.x() - A.x())) / normalLength;
     }
 
-    public static double pointToLineDistance(Location lineStart, Location lineEnds, Location P) {
-        double normalLength = Math.sqrt(Sq(lineEnds.x() - lineStart.x()) +
-                                        Sq(lineEnds.y() - lineStart.y()));
-        return Math.abs((P.x() - lineStart.x()) *
-                        (lineEnds.y() - lineStart.y()) -
-                        (P.y() - lineStart.y()) *
-                        (lineEnds.x() - lineStart.x())) /
-               normalLength;
-    }
-
     public static<L1 extends Location, L2 extends Location> int closestEdge(int currentEdgeIndex,
                                                                             L1 p, List<LineEdge> edges,
                                                                             Map<String, L2> waypointMap) {

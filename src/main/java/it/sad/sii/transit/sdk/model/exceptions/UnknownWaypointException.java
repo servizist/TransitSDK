@@ -1,17 +1,14 @@
 package it.sad.sii.transit.sdk.model.exceptions;
 
+
 /**
  * Created by ldematte on 11/14/16.
  */
-public class UnknownWaypointException extends Exception {
-    private final String waypointId;
-
+public class UnknownWaypointException extends UnknownEntityException {
     public UnknownWaypointException(String waypointId) {
-
-        this.waypointId = waypointId;
+        super(waypointId);
     }
 
-    public String getWaypointId() {
-        return waypointId;
+    public UnknownWaypointException() {
     }
 }
