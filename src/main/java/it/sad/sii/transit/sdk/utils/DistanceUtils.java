@@ -161,7 +161,7 @@ public class DistanceUtils {
 
     public static<L1 extends Location, L2 extends Location> int closestEdge(int currentEdgeIndex,
                                                                             L1 p, List<LineEdge> edges,
-                                                                            Map<Integer, L2> waypointMap) {
+                                                                            Map<String, L2> waypointMap) {
         if (currentEdgeIndex >= edges.size()) {
             return -1;
         }
@@ -203,13 +203,13 @@ public class DistanceUtils {
     }
 
     private static<L extends Location> EdgeAndPosition nextEdge(int i, List<LineEdge> currentVertices,
-                                                                HashMap<Integer, L> waypoints) {
-        int currentStart = -1;
-        int currentEnd = -1;
+                                                                HashMap<String, L> waypoints) {
+        String currentStart = null;
+        String currentEnd = null;
         long currentTime = 0;
 
         // find start
-        while (i < currentVertices.size() && currentStart < 0) {
+        while (i < currentVertices.size() && currentStart == null) {
             if (waypoints.containsKey(currentVertices.get(i).getIdA())) {
                 currentStart = currentVertices.get(i).getIdA();
                 currentTime = 0;
@@ -219,7 +219,7 @@ public class DistanceUtils {
         }
 
         // find end
-        while (i < currentVertices.size() && currentEnd < 0) {
+        while (i < currentVertices.size() && currentEnd == null) {
             currentTime += currentVertices.get(i).getDurationInMillis();
 
             if (waypoints.containsKey(currentVertices.get(i).getIdB())) {
@@ -228,7 +228,7 @@ public class DistanceUtils {
             ++i; // Increment anyway
         }
 
-        if (currentStart >= 0 && currentEnd >= 0)
+        if (currentStart != null && currentEnd != null)
             return new EdgeAndPosition(
                     new LineEdge(currentStart, currentEnd, currentTime, currentVertices.get(0).getLineId(),
                                  currentVertices.get(0).isForward()), i);
@@ -241,7 +241,7 @@ public class DistanceUtils {
     // a list of line edges
     // Find out the edges present in both, and trim them.
     // Adjust edges and times accordingly (A-B-C -> no B -> A-C)
-    public static Map<Integer, Waypoint> trimEdgesToWaypoints(List<Waypoint> currentPoints, List<LineEdge> currentEdges,
+    public static Map<String, Waypoint> trimEdgesToWaypoints(List<Waypoint> currentPoints, List<LineEdge> currentEdges,
                                                               List<Waypoint> trimmedPoints,
                                                               List<LineEdge> trimmedEdges) {
 
@@ -250,7 +250,7 @@ public class DistanceUtils {
         }
         // Add the first point
         for (Waypoint point : currentPoints) {
-            if (Integer.parseInt(point.id) == currentEdges.get(0).getIdA()) {
+            if (point.id.equals(currentEdges.get(0).getIdA())) {
                 trimmedPoints.add(point);
                 break;
             }
@@ -259,16 +259,16 @@ public class DistanceUtils {
         // Add all the other ones
         for (LineEdge lineEdge : currentEdges) {
             for (Waypoint point : currentPoints) {
-                if (Integer.parseInt(point.id) == lineEdge.getIdB()) {
+                if (point.id.equals(lineEdge.getIdB())) {
                     trimmedPoints.add(point);
                     break;
                 }
             }
         }
-        HashMap<Integer, Waypoint> waypointMap = new HashMap<>();
+        HashMap<String, Waypoint> waypointMap = new HashMap<>();
         // Build the waypoint map with the available ones (we need it now)
         for (Waypoint point : trimmedPoints) {
-            waypointMap.put(Integer.parseInt(point.id), point);
+            waypointMap.put(point.id, point);
         }
 
 

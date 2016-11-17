@@ -3,8 +3,8 @@ package it.sad.sii.transit.sdk.model;
 import java.io.Serializable;
 
 public class LineEdge implements Serializable {
-    private int idA = 0;
-    private int idB = 0;
+    private String idA = "";
+    private String idB = "";
     private long durationInMillis = 0;
     private int lineId = 0;
     private boolean forward;
@@ -12,7 +12,7 @@ public class LineEdge implements Serializable {
     public LineEdge() {
     }
 
-    public LineEdge(int idA, int idB, long durationInMillis, int lineId, boolean forward) {
+    public LineEdge(String idA, String idB, long durationInMillis, int lineId, boolean forward) {
         setIdA(idA);
         setIdB(idB);
         setDurationInMillis(durationInMillis);
@@ -20,19 +20,19 @@ public class LineEdge implements Serializable {
         setForward(forward);
     }
 
-    public int getIdA() {
+    public String getIdA() {
         return idA;
     }
 
-    public void setIdA(int idA) {
+    public void setIdA(String idA) {
         this.idA = idA;
     }
 
-    public int getIdB() {
+    public String getIdB() {
         return idB;
     }
 
-    public void setIdB(int idB) {
+    public void setIdB(String idB) {
         this.idB = idB;
     }
 

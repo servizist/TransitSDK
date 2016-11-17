@@ -232,15 +232,15 @@ public class DistanceTest {
     @Test
     public void closestEdge() {
         List<LineEdge> edges = new ArrayList<LineEdge>();
-        edges.add(new LineEdge(1, 2, 0, 0, true));
-        edges.add(new LineEdge(2, 3, 0, 0, true));
-        edges.add(new LineEdge(3, 4, 0, 0, true));
+        edges.add(new LineEdge("1", "2", 0, 0, true));
+        edges.add(new LineEdge("2", "3", 0, 0, true));
+        edges.add(new LineEdge("3", "4", 0, 0, true));
 
-        Map<Integer, Waypoint> waypoints = new HashMap<Integer, Waypoint>();
-        waypoints.put(1, new Waypoint(11.091721, 46.796184, "1", "1"));
-        waypoints.put(2, new Waypoint(11.092907, 46.796349, "2", "2"));
-        waypoints.put(3, new Waypoint(11.091796, 46.795916, "3", "3"));
-        waypoints.put(4, new Waypoint(11.090343, 46.795600, "4", "4"));
+        Map<String, Waypoint> waypoints = new HashMap<String, Waypoint>();
+        waypoints.put("1", new Waypoint(11.091721, 46.796184, "1", "1"));
+        waypoints.put("2", new Waypoint(11.092907, 46.796349, "2", "2"));
+        waypoints.put("3", new Waypoint(11.091796, 46.795916, "3", "3"));
+        waypoints.put("4", new Waypoint(11.090343, 46.795600, "4", "4"));
 
         List<Waypoint> positions = new ArrayList<Waypoint>();
         positions.add(new Waypoint(11.091451, 46.796072, "1", "1"));
@@ -457,15 +457,15 @@ public class DistanceTest {
     private void execute(String waypointsString, String positionsString) {
         List<Waypoint> positions = new ArrayList<Waypoint>();
         List<LineEdge> edges = new ArrayList<LineEdge>();
-        Map<Integer, Waypoint> waypoints = new HashMap<Integer, Waypoint>();
+        Map<String, Waypoint> waypoints = new HashMap<String, Waypoint>();
 
         Gson gson = new Gson();
         Waypoint[] wps = gson.fromJson(waypointsString, Waypoint[].class);
         Waypoint wpOld = null;
         for (Waypoint wp : wps) {
-            waypoints.put(Integer.parseInt(wp.id), wp);
+            waypoints.put(wp.id, wp);
             if (wpOld != null)
-                edges.add(new LineEdge(Integer.parseInt(wpOld.id), Integer.parseInt(wp.id), 0, 0, true));
+                edges.add(new LineEdge(wpOld.id, wp.id, 0, 0, true));
             wpOld = wp;
         }
 
