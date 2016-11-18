@@ -9,7 +9,6 @@ import java.io.Serializable;
 @XmlRootElement
 public class JourneyPassageNotification extends JourneyNotification implements Serializable {
 
-    public String waypointId;
     public String expectedRelativeTime;
     public String measuredRelativeTime;
 

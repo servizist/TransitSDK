@@ -19,6 +19,10 @@ public class JourneyStartedNotification extends JourneyNotification implements S
 
     public JourneyStartedNotification(List<WaypointTime> waypoints, String transportId, String lineId, String runId,
                                       TimeTable.Direction direction, boolean isPlanned, long txTime) {
+
+        if (isPlanned && waypoints != null) {
+            throw new IllegalArgumentException("If the line is planned, 'waypoints' should be null");
+        }
         this.waypoints = waypoints;
         this.transportId = transportId;
         this.lineId = lineId;
@@ -28,10 +32,18 @@ public class JourneyStartedNotification extends JourneyNotification implements S
         this.txTime = txTime;
     }
 
+    public List<WaypointTime> getWaypoints() {
+        if (isPlanned)
+            throw new IllegalStateException("No waypoint times for a planned run, use a TimeTable instead!");
+        return waypoints;
+    }
+
     public String toString() {
         String s = "JourneyStartedNotification{";
-        for (WaypointTime waypoint : waypoints) {
-            s += waypoint.toString() + ", ";
+        if (!isPlanned) {
+            for (WaypointTime waypoint : getWaypoints()) {
+                s += waypoint.toString() + ", ";
+            }
         }
         s += "transportId=" + transportId +
              ", lineId=" + lineId +

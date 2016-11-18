@@ -8,7 +8,6 @@ import java.io.Serializable;
 @XmlRootElement
 public class JourneyPositionNotification extends JourneyNotification implements Serializable {
 
-    public String waypointId;
     public double edgePercentage;
 
     public JourneyPositionNotification() { }

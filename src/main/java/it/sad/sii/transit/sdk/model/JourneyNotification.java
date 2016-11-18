@@ -12,6 +12,7 @@ public abstract class JourneyNotification {
     public String lineId;
     public String runId;
     public long txTime;
+    public String waypointId;
 
     public abstract void visit(INotificationProcessor processor) throws IOException;
 }

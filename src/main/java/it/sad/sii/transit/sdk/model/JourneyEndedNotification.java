@@ -16,6 +16,7 @@ public class JourneyEndedNotification extends JourneyNotification implements Ser
         this.lineId = lineId;
         this.runId = runId;
         this.txTime = txTime;
+        this.waypointId = null;
     }
 
     public String toString() {
