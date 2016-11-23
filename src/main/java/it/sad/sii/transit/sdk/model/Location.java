@@ -1,5 +1,8 @@
 package it.sad.sii.transit.sdk.model;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 import java.io.Serializable;
 
 /**
@@ -14,6 +17,22 @@ public class Location implements Serializable {
     public Location(Number longitude, Number latitude) {
         this.latitude = latitude;
         this.longitude = longitude;
+    }
+
+    public Number getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Number longitude) {
+        this.longitude = longitude;
+    }
+
+    public Number getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Number latitude) {
+        this.latitude = latitude;
     }
 
     public double x() {
