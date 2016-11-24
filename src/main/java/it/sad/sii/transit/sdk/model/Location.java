@@ -1,5 +1,7 @@
 package it.sad.sii.transit.sdk.model;
 
+import it.sad.sii.transit.sdk.utils.CoordinateConvert;
+
 import java.io.Serializable;
 
 /**
@@ -32,8 +34,8 @@ public class Location implements Serializable {
         latitude = p0;
     }
 
-    public static Location fromUTM(double v, double v1) {
-        // TODO
-        return null;
+    public static Location fromUTM(double easting, double northing) {
+        double[] latlon = CoordinateConvert.UTM2LatLon(easting, northing, 32, "N");
+        return new Location(latlon[1], latlon[0]);
     }
 }
