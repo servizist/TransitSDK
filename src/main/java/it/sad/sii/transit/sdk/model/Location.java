@@ -18,6 +18,22 @@ public class Location implements Serializable {
         this.longitude = longitude;
     }
 
+    public Number getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Number longitude) {
+        this.longitude = longitude;
+    }
+
+    public Number getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Number latitude) {
+        this.latitude = latitude;
+    }
+
     public double x() {
         return longitude.doubleValue();
     }
