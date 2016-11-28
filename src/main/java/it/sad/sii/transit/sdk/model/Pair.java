@@ -1,5 +1,7 @@
 package it.sad.sii.transit.sdk.model;
 
+import java.util.Objects;
+
 /**
  * Created by ldematte on 10/6/14.
  * <p/>
@@ -45,13 +47,8 @@ public class Pair<T, U> implements Comparable<Pair<T, U>> {
             return false;
         if (this == obj)
             return true;
-        return equal(first, ((Pair)obj).first)
-               && equal(second, ((Pair)obj).second);
-    }
-
-    // todo move this to a helper class.
-    private boolean equal(Object o1, Object o2) {
-        return o1 == null ? o2 == null : (o1 == o2 || o1.equals(o2));
+        return Objects.equals(first, ((Pair)obj).first)
+               && Objects.equals(second, ((Pair)obj).second);
     }
 
     @Override
