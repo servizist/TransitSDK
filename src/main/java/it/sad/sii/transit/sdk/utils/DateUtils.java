@@ -146,7 +146,11 @@ public class DateUtils {
         // if we have more seconds than a whole day we subtract 1 day from the seconds and add it to the date
         if (secondsSinceMidnight >= 60 * 60 * 24) {
             secondsSinceMidnight -= 60 * 60 * 24;
+<<<<<<< HEAD
             date = date.plusDays(1);
+=======
+            date.plusDays(1);
+>>>>>>> 2ca967a0327bf65cedc23dd15a34bd2ada1e76d4
         }
         int hoursSinceMidnight = secondsSinceMidnight / 3600;
         int minutesSinceMidnight = (secondsSinceMidnight - (hoursSinceMidnight * 3600)) / 60;
