@@ -143,6 +143,11 @@ public class DateUtils {
      * @return DateTime containing the time that corresponds to secondsSinceMidnight of the given date
      */
     public static DateTime secondsSinceMidnightToDate(int secondsSinceMidnight, LocalDate date) {
+        // if we have more seconds than a whole day we subtract 1 day from the seconds and add it to the date
+        if (secondsSinceMidnight >= 60 * 60 * 24) {
+            secondsSinceMidnight -= 60 * 60 * 24;
+            date = date.plusDays(1);
+        }
         int hoursSinceMidnight = secondsSinceMidnight / 3600;
         int minutesSinceMidnight = (secondsSinceMidnight - (hoursSinceMidnight * 3600)) / 60;
         int remainingSeconds = (secondsSinceMidnight - (hoursSinceMidnight * 3600)) - (minutesSinceMidnight * 60);
