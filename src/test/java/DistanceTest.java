@@ -1,11 +1,10 @@
 
 import com.google.gson.Gson;
+import it.bz.sii.common.Pair;
+import it.sad.sii.transit.sdk.model.LineEdge;
 import it.sad.sii.transit.sdk.model.Location;
 import it.sad.sii.transit.sdk.model.Waypoint;
 import it.sad.sii.transit.sdk.utils.DistanceUtils;
-import it.sad.sii.transit.sdk.model.Pair;
-import it.sad.sii.transit.sdk.model.LineEdge;
-
 import org.junit.Assert;
 import org.junit.Test;
 

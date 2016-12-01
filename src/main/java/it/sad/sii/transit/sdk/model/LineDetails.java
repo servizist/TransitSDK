@@ -1,5 +1,7 @@
 package it.sad.sii.transit.sdk.model;
 
+import it.bz.sii.common.BilingualString;
+
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
