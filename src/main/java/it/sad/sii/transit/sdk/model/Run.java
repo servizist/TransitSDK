@@ -2,7 +2,10 @@ package it.sad.sii.transit.sdk.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import it.sad.sii.transit.sdk.utils.*;
+import it.bz.sii.common.conversions.DateDeserializer;
+import it.bz.sii.common.conversions.DateSerializer;
+import it.bz.sii.common.conversions.TimeDeserializer;
+import it.bz.sii.common.conversions.TimeSerializer;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;
 

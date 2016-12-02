@@ -1,6 +1,6 @@
 package it.sad.sii.transit.sdk.model;
 
-import it.sad.sii.transit.sdk.utils.CoordinateConvert;
+import it.bz.sii.common.conversions.CoordinateConverter;
 
 import java.io.Serializable;
 
@@ -51,7 +51,7 @@ public class Location implements Serializable {
     }
 
     public static Location fromUTM(double easting, double northing) {
-        double[] latlon = CoordinateConvert.UTM2LatLon(easting, northing, 32, "N");
+        double[] latlon = CoordinateConverter.UTM2LatLon(easting, northing, 32, "N");
         return new Location(latlon[1], latlon[0]);
     }
 }

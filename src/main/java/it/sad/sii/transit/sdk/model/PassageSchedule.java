@@ -1,6 +1,6 @@
 package it.sad.sii.transit.sdk.model;
 
-import it.sad.sii.transit.sdk.utils.DateUtils;
+import it.bz.sii.common.DateUtils;
 import org.joda.time.DateTime;
 
 import java.io.Serializable;

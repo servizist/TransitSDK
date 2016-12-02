@@ -1,8 +1,8 @@
 package it.sad.sii.transit.sdk.utils;
 
+import it.sad.sii.transit.sdk.model.Location;
 import it.bz.sii.common.Pair;
 import it.sad.sii.transit.sdk.model.*;
-import it.sad.sii.transit.sdk.model.Location;
 
 import java.util.Collections;
 import java.util.HashMap;
