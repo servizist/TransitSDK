@@ -18,7 +18,8 @@ public class TimeTable implements Serializable, Comparable<TimeTable> {
 
     public enum Direction {
         OUTWARDS("A"),
-        RETURN("R");
+        RETURN("R"),
+        UNKNOWN("X");
 
         private final String name;
 
@@ -49,6 +50,9 @@ public class TimeTable implements Serializable, Comparable<TimeTable> {
                 case "RETURN":
                 case "Di":
                     return RETURN;
+
+                case "X":
+                    return UNKNOWN;
 
                 default:
                     throw new IllegalArgumentException("Unknown direction " + s);
