@@ -1,8 +1,9 @@
 package it.sad.sii.transit.sdk.utils;
 
-import it.sad.sii.transit.sdk.model.Location;
 import it.bz.sii.common.Pair;
-import it.sad.sii.transit.sdk.model.*;
+import it.sad.sii.transit.sdk.model.LineEdge;
+import it.sad.sii.transit.sdk.model.Location;
+import it.sad.sii.transit.sdk.model.Waypoint;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -78,7 +79,7 @@ public class DistanceUtils {
 
     // Given a vector, it computes the two perpendicular line (as two points) passing on the starting point
     // Segment is (AB)
-    public static<L extends Location> Pair<Location, Location> planeFromSegment(L A, L B) {
+    public static <L extends Location> Pair<Location, Location> planeFromSegment(L A, L B) {
         // treat AB as a vector.
         // Subtract A components ("translate" to origin)
         double x = B.x() - A.x();
@@ -150,9 +151,9 @@ public class DistanceUtils {
                         (B.x() - A.x())) / normalLength;
     }
 
-    public static<L1 extends Location, L2 extends Location> int closestEdge(int currentEdgeIndex,
-                                                                            L1 p, List<LineEdge> edges,
-                                                                            Map<String, L2> waypointMap) {
+    public static <L1 extends Location, L2 extends Location> int closestEdge(int currentEdgeIndex,
+                                                                             L1 p, List<LineEdge> edges,
+                                                                             Map<String, L2> waypointMap) {
         if (currentEdgeIndex >= edges.size()) {
             return -1;
         }
@@ -169,32 +170,26 @@ public class DistanceUtils {
             pointB = waypointMap.get(edges.get(i).getIdB());
             positionOnLine = DistanceUtils.isBetween(p, pointA, pointB);
 
-            if (currentEdgeIndex == edges.size() - 1) {
-                if (positionOnLine == PositionOnLine.OnEnd || positionOnLine == PositionOnLine.Out ||
-                    positionOnLine == PositionOnLine.Distant) {
-                    return currentEdgeIndex + 1;
-                }
-            }
-
             if (positionOnLine != DistanceUtils.PositionOnLine.Out && positionOnLine != PositionOnLine.Distant) {
                 // if we are on in between... compute the distance FROM THE LINE.
                 // There might be more than one!
                 float distance = (float)DistanceUtils.distance(p, pointA, pointB);
-                int edgeDistance = (i - currentEdgeIndex) + 1;
+                int weight = (i - currentEdgeIndex) + 1;
                 // Weighted distance - farther away we are form the current point,
                 // lower is the probability this is our point
-                float weightedDistance = distance * edgeDistance;
+                float weightedDistance = distance * weight;
                 if (weightedDistance < bestDistance) {
                     closestEdgeIndex = i;
                     bestDistance = weightedDistance;
                 }
             }
         }
+
         return closestEdgeIndex;
     }
 
-    private static<L extends Location> EdgeAndPosition nextEdge(int i, List<LineEdge> currentVertices,
-                                                                HashMap<String, L> waypoints) {
+    private static <L extends Location> EdgeAndPosition nextEdge(int i, List<LineEdge> currentVertices,
+                                                                 HashMap<String, L> waypoints) {
         String currentStart = null;
         String currentEnd = null;
         long currentTime = 0;
@@ -233,8 +228,8 @@ public class DistanceUtils {
     // Find out the edges present in both, and trim them.
     // Adjust edges and times accordingly (A-B-C -> no B -> A-C)
     public static Map<String, Waypoint> trimEdgesToWaypoints(List<Waypoint> currentPoints, List<LineEdge> currentEdges,
-                                                              List<Waypoint> trimmedPoints,
-                                                              List<LineEdge> trimmedEdges) {
+                                                             List<Waypoint> trimmedPoints,
+                                                             List<LineEdge> trimmedEdges) {
 
         if (currentEdges.size() == 0) {
             return Collections.emptyMap();
