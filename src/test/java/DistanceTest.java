@@ -271,7 +271,7 @@ public class DistanceTest {
             else if (i < 12)
                 Assert.assertEquals(edge, 2);
             else
-                Assert.assertEquals(edge, 3);
+                Assert.assertEquals(edge, 2);
         }
     }
 
