@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 /**
  * Created by ldematte on 9/30/14.
- * <p/>
+ * <p>
  */
 public class PassageSchedule implements Serializable {
     private final String lineId;
@@ -54,7 +54,8 @@ public class PassageSchedule implements Serializable {
 
     public PassageSchedule(String lineId, String runId, String carrierId, Integer scheduledArrivalTime,
                            Integer scheduledDepartureTime, String siiCode, String comCode, int recurrence,
-                           TimeTable.Direction direction, int validAt, String RFICode, String runCategory) {
+                           int progressive, TimeTable.Direction direction, int validAt, String RFICode,
+                           String runCategory) {
         this.lineId = lineId;
         this.runId = runId;
         this.carrierId = carrierId;
@@ -71,6 +72,7 @@ public class PassageSchedule implements Serializable {
         else
             this.scheduledDepartureTime = null;
         this.recurrence = recurrence;
+        this.progressive = progressive;
         this.direction = direction;
         this.siiCode = siiCode;
         this.comCode = comCode;
@@ -81,14 +83,16 @@ public class PassageSchedule implements Serializable {
     public PassageSchedule(String lineId, String runId, String carrierId, Integer scheduledArrivalTime,
                            Integer scheduledDepartureTime, String siiCode, String comCode, int recurrence,
                            TimeTable.Direction direction, int validAt) {
-        this(lineId, runId, carrierId, scheduledArrivalTime, scheduledDepartureTime, siiCode, comCode, direction, validAt);
+        this(lineId, runId, carrierId, scheduledArrivalTime, scheduledDepartureTime, siiCode, comCode, direction,
+             validAt);
         this.recurrence = recurrence;
     }
 
     public PassageSchedule(String lineId, String runId, String carrierId, Integer scheduledArrivalTime,
                            Integer scheduledDepartureTime, String siiCode, String comCode,
                            TimeTable.Direction direction, int validAt, int progressive) {
-        this(lineId, runId, carrierId, scheduledArrivalTime, scheduledDepartureTime, siiCode, comCode, direction, validAt);
+        this(lineId, runId, carrierId, scheduledArrivalTime, scheduledDepartureTime, siiCode, comCode, direction,
+             validAt);
         this.recurrence = -1;
         this.progressive = progressive;
     }
@@ -115,7 +119,8 @@ public class PassageSchedule implements Serializable {
 
     public int getRecurrence() {
         if (recurrence == -1)
-            throw new IllegalStateException("You are trying to get recurrence info, but this info was not explicitly set.");
+            throw new IllegalStateException(
+                    "You are trying to get recurrence info, but this info was not explicitly set.");
         return recurrence;
     }
 
