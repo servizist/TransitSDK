@@ -82,6 +82,15 @@ public class PassageSchedule implements Serializable {
 
     public PassageSchedule(String lineId, String runId, String carrierId, Integer scheduledArrivalTime,
                            Integer scheduledDepartureTime, String siiCode, String comCode, int recurrence,
+                           int progressive, TimeTable.Direction direction, int validAt) {
+        this(lineId, runId, carrierId, scheduledArrivalTime, scheduledDepartureTime, siiCode, comCode, direction,
+             validAt);
+        this.recurrence = recurrence;
+        this.progressive = progressive;
+    }
+
+    public PassageSchedule(String lineId, String runId, String carrierId, Integer scheduledArrivalTime,
+                           Integer scheduledDepartureTime, String siiCode, String comCode, int recurrence,
                            TimeTable.Direction direction, int validAt) {
         this(lineId, runId, carrierId, scheduledArrivalTime, scheduledDepartureTime, siiCode, comCode, direction,
              validAt);
