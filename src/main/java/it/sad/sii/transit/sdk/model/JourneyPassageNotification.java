@@ -1,6 +1,7 @@
 package it.sad.sii.transit.sdk.model;
 
 import it.sad.sii.transit.sdk.utils.INotificationProcessor;
+import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -51,7 +52,7 @@ public class JourneyPassageNotification extends JourneyNotification implements S
     }
 
     @Override
-    public void visit(INotificationProcessor processor) {
-        processor.process(this);
+    public void visit(INotificationProcessor processor, Logger logger) {
+        processor.process(this, logger);
     }
 }

@@ -1,7 +1,6 @@
 package it.sad.sii.transit.sdk.model;
 
 import javax.xml.bind.annotation.XmlRootElement;
-import java.awt.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

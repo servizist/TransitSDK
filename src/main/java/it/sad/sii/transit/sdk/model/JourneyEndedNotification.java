@@ -1,6 +1,7 @@
 package it.sad.sii.transit.sdk.model;
 
 import it.sad.sii.transit.sdk.utils.INotificationProcessor;
+import org.apache.log4j.Logger;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
@@ -29,7 +30,7 @@ public class JourneyEndedNotification extends JourneyNotification implements Ser
     }
 
     @Override
-    public void visit(INotificationProcessor processor) {
-        processor.process(this);
+    public void visit(INotificationProcessor processor, Logger logger) {
+        processor.process(this, logger);
     }
 }

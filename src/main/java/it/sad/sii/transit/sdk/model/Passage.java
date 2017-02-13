@@ -3,9 +3,9 @@ package it.sad.sii.transit.sdk.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import it.bz.sii.common.DateUtils;
 import it.bz.sii.common.conversions.DateTimeDeserializer;
 import it.bz.sii.common.conversions.DateTimeSerializer;
-import it.bz.sii.common.DateUtils;
 import org.joda.time.DateTime;
 
 import java.io.Serializable;

@@ -1,6 +1,7 @@
 package it.sad.sii.transit.sdk.model;
 
 import it.sad.sii.transit.sdk.utils.INotificationProcessor;
+import org.apache.log4j.Logger;
 
 import java.io.IOException;
 
@@ -14,5 +15,5 @@ public abstract class JourneyNotification {
     public long txTime;
     public String waypointId;
 
-    public abstract void visit(INotificationProcessor processor) throws IOException;
+    public abstract void visit(INotificationProcessor processor, Logger logger) throws IOException;
 }

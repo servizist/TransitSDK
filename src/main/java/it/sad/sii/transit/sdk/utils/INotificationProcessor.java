@@ -4,6 +4,7 @@ import it.sad.sii.transit.sdk.model.JourneyEndedNotification;
 import it.sad.sii.transit.sdk.model.JourneyPassageNotification;
 import it.sad.sii.transit.sdk.model.JourneyPositionNotification;
 import it.sad.sii.transit.sdk.model.JourneyStartedNotification;
+import org.apache.log4j.Logger;
 
 import java.io.IOException;
 
@@ -13,8 +14,8 @@ import java.io.IOException;
  * Processor interface for double dispatching
  */
 public interface INotificationProcessor {
-    void process(JourneyStartedNotification notification) throws IOException;
-    void process(JourneyEndedNotification notification);
-    void process(JourneyPassageNotification notification);
-    void process(JourneyPositionNotification notification);
+    void process(JourneyStartedNotification notification, Logger logger) throws IOException;
+    void process(JourneyEndedNotification notification, Logger logger);
+    void process(JourneyPassageNotification notification, Logger logger);
+    void process(JourneyPositionNotification notification, Logger logger);
 }

@@ -1,6 +1,7 @@
 package it.sad.sii.transit.sdk.model;
 
 import it.sad.sii.transit.sdk.utils.INotificationProcessor;
+import org.apache.log4j.Logger;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.IOException;
@@ -56,7 +57,7 @@ public class JourneyStartedNotification extends JourneyNotification implements S
     }
 
     @Override
-    public void visit(INotificationProcessor processor) throws IOException {
-        processor.process(this);
+    public void visit(INotificationProcessor processor, Logger logger) throws IOException {
+        processor.process(this, logger);
     }
 }
