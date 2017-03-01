@@ -19,6 +19,8 @@ import java.util.List;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Departure implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     private String lineId;
     private String runId;
     private String carrierId;

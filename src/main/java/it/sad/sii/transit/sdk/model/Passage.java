@@ -15,6 +15,8 @@ import java.io.Serializable;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Passage implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     public Passage() {
     }
 

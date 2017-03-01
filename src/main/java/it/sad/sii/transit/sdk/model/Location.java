@@ -8,6 +8,8 @@ import java.io.Serializable;
  * Created by ldematte on 11/11/16.
  */
 public class Location implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     private Number longitude;
     private Number latitude;
 

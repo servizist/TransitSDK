@@ -10,6 +10,8 @@ import java.io.Serializable;
  * <p>
  */
 public class PassageSchedule implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     private final String lineId;
     private final String runId;
     private final String carrierId;

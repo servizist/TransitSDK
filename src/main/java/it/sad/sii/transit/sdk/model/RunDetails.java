@@ -10,6 +10,8 @@ import java.util.List;
  */
 @XmlRootElement
 public class RunDetails implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     public String lineId;
     public String runId;
     public String direction;

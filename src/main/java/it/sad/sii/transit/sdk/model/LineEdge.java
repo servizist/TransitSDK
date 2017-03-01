@@ -3,6 +3,8 @@ package it.sad.sii.transit.sdk.model;
 import java.io.Serializable;
 
 public class LineEdge implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     private String idA = "";
     private String idB = "";
     private long durationInMillis = 0;

@@ -10,6 +10,7 @@ import java.util.List;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ArrivalResponse implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     private StopInfo waypoint;
     private List<Arrival> arrivals;

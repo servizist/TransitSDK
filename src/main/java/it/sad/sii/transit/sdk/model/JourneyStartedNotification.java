@@ -10,6 +10,7 @@ import java.util.List;
 
 @XmlRootElement
 public class JourneyStartedNotification extends JourneyNotification implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     public List<WaypointTime> waypoints;
     public TimeTable.Direction direction;

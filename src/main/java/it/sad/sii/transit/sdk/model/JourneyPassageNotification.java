@@ -9,6 +9,7 @@ import java.io.Serializable;
 
 @XmlRootElement
 public class JourneyPassageNotification extends JourneyNotification implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     public String expectedRelativeTime;
     public String measuredRelativeTime;

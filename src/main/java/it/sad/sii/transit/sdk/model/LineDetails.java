@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 
 public class LineDetails implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     public List<Waypoint> forwardWaypoints;
     public List<Waypoint> backwardWaypoints;
 

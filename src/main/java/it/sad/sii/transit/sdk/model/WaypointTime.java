@@ -5,6 +5,8 @@ import java.io.Serializable;
 
 @XmlRootElement
 public class WaypointTime implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     public String waypointId;
     public String relativeTime; // HH:mm:ss (time difference)
 

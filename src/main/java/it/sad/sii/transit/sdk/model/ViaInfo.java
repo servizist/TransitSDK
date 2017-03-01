@@ -6,6 +6,8 @@ import java.io.Serializable;
  * Created by lconcli on 10/11/15.
  */
 public class ViaInfo implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     public ViaInfo() {
         super();
     }

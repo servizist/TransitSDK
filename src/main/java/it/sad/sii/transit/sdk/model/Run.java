@@ -8,7 +8,6 @@ import it.bz.sii.common.conversions.TimeDeserializer;
 import it.bz.sii.common.conversions.TimeSerializer;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;
-
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
@@ -17,6 +16,8 @@ import java.io.Serializable;
  */
 @XmlRootElement
 public class Run implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     public String id;
 
     @JsonSerialize(using = TimeSerializer.class)

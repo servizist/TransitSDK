@@ -3,6 +3,8 @@ package it.sad.sii.transit.sdk.model;
 import java.io.Serializable;
 
 public class Waypoint extends Location implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     public String descriptionDe;
     public String descriptionIt;
     public String id;

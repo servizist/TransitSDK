@@ -57,7 +57,7 @@
         <dependency>
             <groupId>it.bz.sii</groupId>
             <artifactId>JavaCommon</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.1</version>
         </dependency>
 
         <!-- Date and time handling (we do not trust standard Java libraries here) -->

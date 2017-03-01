@@ -4,6 +4,7 @@ package it.sad.sii.transit.sdk.model.exceptions;
  * Created by ldematte on 11/17/16.
  */
 public class UnknownEntityException extends Exception {
+    private static final long serialVersionUID = 1L;
 
     private final String entityId;
 

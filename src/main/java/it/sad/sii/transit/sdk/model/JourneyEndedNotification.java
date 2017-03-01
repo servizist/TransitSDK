@@ -2,13 +2,13 @@ package it.sad.sii.transit.sdk.model;
 
 import it.sad.sii.transit.sdk.utils.INotificationProcessor;
 import org.apache.log4j.Logger;
-
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
 @XmlRootElement
 public class JourneyEndedNotification extends JourneyNotification implements Serializable {
-
+    private static final long serialVersionUID = 1L;
+    
     public JourneyEndedNotification() {
     }
 

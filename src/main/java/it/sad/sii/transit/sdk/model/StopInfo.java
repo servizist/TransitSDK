@@ -10,6 +10,8 @@ import java.util.List;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class StopInfo implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     private String id;
     private String timeNodeId;
     private String nameIT;

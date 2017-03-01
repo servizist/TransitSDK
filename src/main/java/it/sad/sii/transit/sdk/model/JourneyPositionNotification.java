@@ -8,7 +8,8 @@ import java.io.Serializable;
 
 @XmlRootElement
 public class JourneyPositionNotification extends JourneyNotification implements Serializable {
-
+    private static final long serialVersionUID = 1L;
+    
     public double edgePercentage;
 
     public JourneyPositionNotification() { }
