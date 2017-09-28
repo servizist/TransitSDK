@@ -162,7 +162,7 @@ public class DistanceUtils {
         DistanceUtils.PositionOnLine positionOnLine;
         // return -1 if current position lies not within any edge
         int closestEdgeIndex = -1;
-        float bestDistance = Float.MAX_VALUE;
+        double bestDistance = Float.MAX_VALUE;
 
         //never backtrack!
         for (int i = currentEdgeIndex; i < edges.size(); ++i) {
@@ -174,10 +174,10 @@ public class DistanceUtils {
                 // if we are on in between... compute the distance FROM THE LINE.
                 // There might be more than one!
                 float distance = (float)DistanceUtils.distance(p, pointA, pointB);
-                int weight = (i - currentEdgeIndex) + 1;
-                // Weighted distance - farther away we are form the current point,
-                // lower is the probability this is our point
-                float weightedDistance = distance * weight;
+                double weight = Math.pow((i - currentEdgeIndex) + 1, 2);
+                // Weighted distance - the farther away we are form the current point,
+                // the lower is the probability this is our point
+                double weightedDistance = distance * weight;
                 if (weightedDistance < bestDistance) {
                     closestEdgeIndex = i;
                     bestDistance = weightedDistance;

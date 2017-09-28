@@ -18,6 +18,13 @@ import java.util.Map;
  */
 public class DistanceTest {
 
+    @Test
+    public void test() {
+        Location loc = Location.fromUTM(702631, 5177682);
+        System.out.println(loc.getLatitude());
+        System.out.println(loc.getLongitude());
+    }
+
     //      |      .C
     //      |  . A
     //      |D   . B
@@ -473,7 +480,7 @@ public class DistanceTest {
         for (String pt : positionsString.split(" ")) {
             coords = pt.split(",");
             positions.add(new Waypoint(Double.parseDouble(coords[0]), Double.parseDouble(coords[1]), "" + index,
-                                    "" + index));
+                                       "" + index));
             index++;
         }
 
