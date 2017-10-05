@@ -271,7 +271,7 @@ public class DistanceTest {
             tmp = DistanceUtils.closestEdge(edge, p, edges, waypoints);
             if (tmp != -1)
                 edge = tmp;
-            if (i < 8)
+            if (i < 10)
                 Assert.assertEquals(edge, 0);
             else if (i < 11)
                 Assert.assertEquals(edge, 1);
