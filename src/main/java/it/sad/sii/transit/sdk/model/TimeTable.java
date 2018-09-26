@@ -75,10 +75,10 @@ public class TimeTable implements Serializable, Comparable<TimeTable> {
     }
 
     public TimeTable(String carrierId, String lineId, String runId, String commercialCode, Integer validFrom, Integer validTo) {
-        setCarrierId(carrierId.trim());
-        setLineId(lineId.trim());
-        setRunId(runId.trim());
-        setCommercialCode(commercialCode.trim());
+        setCarrierId(doTrim(carrierId));
+        setLineId(doTrim(lineId));
+        setRunId(doTrim(runId));
+        setCommercialCode(doTrim(commercialCode));
         setValidFrom(validFrom);
         setValidTo(validTo);
     }
@@ -95,7 +95,7 @@ public class TimeTable implements Serializable, Comparable<TimeTable> {
     }
 
     public void setId(String id) {
-        this.id = id.trim();
+        this.id = doTrim(id);
     }
 
     public String getCarrierId() {
@@ -103,7 +103,7 @@ public class TimeTable implements Serializable, Comparable<TimeTable> {
     }
 
     public void setCarrierId(String carrierId) {
-        this.carrierId = carrierId.trim();
+        this.carrierId = doTrim(carrierId);
     }
 
     public String getLineId() {
@@ -111,7 +111,7 @@ public class TimeTable implements Serializable, Comparable<TimeTable> {
     }
 
     public void setLineId(String lineId) {
-        this.lineId = lineId.trim();
+        this.lineId = doTrim(lineId);
     }
 
     public String getRunId() {
@@ -119,7 +119,7 @@ public class TimeTable implements Serializable, Comparable<TimeTable> {
     }
 
     public void setRunId(String runId) {
-        this.runId = runId.trim();
+        this.runId = doTrim(runId);
     }
 
     public Integer getValidFrom() {
@@ -143,7 +143,7 @@ public class TimeTable implements Serializable, Comparable<TimeTable> {
     }
 
     public void setCommercialCode(String commercialCode) {
-        this.commercialCode = commercialCode.trim();
+        this.commercialCode = doTrim(commercialCode);
     }
 
     public void setEntries(List<? extends TimeTableData> entries) {
@@ -180,6 +180,13 @@ public class TimeTable implements Serializable, Comparable<TimeTable> {
     public int compareTo(TimeTable timeTable) {
         // sort by validFrom
         return validFrom < timeTable.validFrom ? -1 : (validFrom > timeTable.validFrom ? 1 : 0);
+    }
+
+    public String doTrim(String stringToTrim) {
+        if (stringToTrim != null)
+            return stringToTrim.trim();
+        else
+            return stringToTrim;
     }
 
     @Override
