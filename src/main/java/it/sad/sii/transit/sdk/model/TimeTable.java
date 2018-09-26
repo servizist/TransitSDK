@@ -75,10 +75,10 @@ public class TimeTable implements Serializable, Comparable<TimeTable> {
     }
 
     public TimeTable(String carrierId, String lineId, String runId, String commercialCode, Integer validFrom, Integer validTo) {
-        setCarrierId(carrierId);
-        setLineId(lineId);
-        setRunId(runId);
-        setCommercialCode(commercialCode);
+        setCarrierId(carrierId.trim());
+        setLineId(lineId.trim());
+        setRunId(runId.trim());
+        setCommercialCode(commercialCode.trim());
         setValidFrom(validFrom);
         setValidTo(validTo);
     }
@@ -95,7 +95,7 @@ public class TimeTable implements Serializable, Comparable<TimeTable> {
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.id = id.trim();
     }
 
     public String getCarrierId() {
@@ -103,7 +103,7 @@ public class TimeTable implements Serializable, Comparable<TimeTable> {
     }
 
     public void setCarrierId(String carrierId) {
-        this.carrierId = carrierId;
+        this.carrierId = carrierId.trim();
     }
 
     public String getLineId() {
@@ -111,7 +111,7 @@ public class TimeTable implements Serializable, Comparable<TimeTable> {
     }
 
     public void setLineId(String lineId) {
-        this.lineId = lineId;
+        this.lineId = lineId.trim();
     }
 
     public String getRunId() {
@@ -119,7 +119,7 @@ public class TimeTable implements Serializable, Comparable<TimeTable> {
     }
 
     public void setRunId(String runId) {
-        this.runId = runId;
+        this.runId = runId.trim();
     }
 
     public Integer getValidFrom() {
@@ -143,7 +143,7 @@ public class TimeTable implements Serializable, Comparable<TimeTable> {
     }
 
     public void setCommercialCode(String commercialCode) {
-        this.commercialCode = commercialCode;
+        this.commercialCode = commercialCode.trim();
     }
 
     public void setEntries(List<? extends TimeTableData> entries) {
