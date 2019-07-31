@@ -12,14 +12,16 @@ public class RfiSiiRun implements Serializable {
     private String RFICode;
     private String lineId;
     private String runId;
+    private String direction;
     private String carrierId;
 
     public RfiSiiRun() {}
 
-    public RfiSiiRun(String RFICode, String lineId, String runId, String carrierId) {
+    public RfiSiiRun(String RFICode, String lineId, String runId, String direction, String carrierId) {
         this.RFICode = RFICode;
         this.lineId = lineId;
         this.runId = runId;
+        this.direction = direction;
         this.carrierId = carrierId;
     }
 
@@ -45,6 +47,14 @@ public class RfiSiiRun implements Serializable {
 
     public void setRunId(String runId) {
         this.runId = runId;
+    }
+
+    public String getDirection() {
+        return direction;
+    }
+
+    public void setDirection(String direction) {
+        this.direction = direction;
     }
 
     public String getCarrierId() {

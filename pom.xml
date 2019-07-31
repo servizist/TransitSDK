@@ -6,7 +6,7 @@
 
     <groupId>it.sad.sii</groupId>
     <artifactId>TransitSDK</artifactId>
-    <version>1.6.2</version>
+    <version>1.6.3</version>
     <packaging>jar</packaging>
 
     <name>TransitSDK</name>
@@ -57,7 +57,7 @@
         <dependency>
             <groupId>it.bz.sii</groupId>
             <artifactId>JavaCommon</artifactId>
-            <version>1.0.4</version>
+            <version>1.0.5</version>
         </dependency>
 
         <!-- Date and time handling (we do not trust standard Java libraries here) -->
