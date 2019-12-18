@@ -2,7 +2,7 @@ package it.sad.sii.transit.sdk.model;
 
 import it.bz.sii.common.BilingualString;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,4 +35,25 @@ public class LineDetails implements Serializable {
     public Map<String, BilingualString> zones = new HashMap<>();
 
     public String commercialCode;
+
+
+    public LineDetails deepCopy() throws Exception
+    {
+        //Serialization of object
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        ObjectOutputStream out = new ObjectOutputStream(bos);
+        out.writeObject(this);
+
+        //De-serialization of object
+        ByteArrayInputStream bis = new   ByteArrayInputStream(bos.toByteArray());
+        ObjectInputStream in = new ObjectInputStream(bis);
+        LineDetails copied = (LineDetails) in.readObject();
+
+        //Verify that object is not corrupt
+
+        //validateNameParts(fName);
+        //validateNameParts(lName);
+
+        return copied;
+    }
 }
